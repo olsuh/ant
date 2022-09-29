@@ -68,7 +68,7 @@ impl Cells {
         self.pos = self.cells.len();
         self.added_cells.insert((x, y));
     }
-    fn run(&mut self, x: Int, y: Int) -> Int {
+    fn run(&mut self, x: Int, y: Int) -> usize {
         self.add(x, y);
 
         loop {
