@@ -47,7 +47,7 @@ fn sum_digits(x: Int) -> Int {
     let mut sum = 0;
     let x_str = x.to_string();
     for x_c in x_str.chars() {
-        let x_i = x_c.to_string().parse::<Int>().unwrap();
+        let x_i = (x_c as Int).wrapping_sub('0' as Int);
         sum += x_i;
     }
     sum
