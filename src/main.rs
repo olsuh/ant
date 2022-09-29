@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::{collections::HashSet, time::Instant};
 type Int = usize;
 enum Step {
     Start,
@@ -92,9 +92,11 @@ impl Cells {
 
 fn main() {
     
+    let start = Instant::now();
     let mut cells = Cells::new();
     let cells_cnt = cells.run(1000, 1000);
-    println!("cells: {}", cells_cnt);
+    let elapsed = start.elapsed().as_secs_f32();
+    println!("cells: {cells_cnt}, elapsed: {elapsed:?}");
     
 }
 
