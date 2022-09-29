@@ -45,10 +45,11 @@ impl Cell {
 
 fn sum_digits(x: Int) -> Int {
     let mut sum = 0;
-    let x_str = x.to_string();
-    for x_c in x_str.chars() {
-        let x_i = (x_c as Int).wrapping_sub('0' as Int);
-        sum += x_i;
+    let mut quot = x;
+    while quot > 0 {
+        let rem = quot % 10;
+        sum += rem;
+        quot /= 10;
     }
     sum
 }
