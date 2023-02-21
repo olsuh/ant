@@ -43,7 +43,7 @@ impl Cell {
     }
 }
 
-fn sum_digits(x: Int) -> Int {
+pub fn sum_digits(x: Int) -> Int {
     let mut sum = 0;
     let mut quot = x;
     while quot > 0 {
@@ -91,6 +91,8 @@ impl Cells {
     
 }
 
+mod chatgpt;
+
 fn main() {
     
     let start = Instant::now();
@@ -98,6 +100,7 @@ fn main() {
     let cells_cnt = cells.run(1000, 1000);
     let elapsed = start.elapsed().as_secs_f32();
     println!("cells: {cells_cnt}, elapsed: {elapsed:?}");
-    
+
+    chatgpt::main();
 }
 
