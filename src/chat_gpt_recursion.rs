@@ -1,11 +1,5 @@
 use std::collections::HashSet;
-
-fn sum_digits(n: i32) -> u32 {
-    n.to_string()
-    .chars()
-    .map(|c| c.to_digit(10).unwrap())
-    .sum::<u32>()
-}
+use crate::{sum_digits, Int};
 
 type Ant = (i32,i32);
 
@@ -24,7 +18,7 @@ fn available_moves(ant_pos: &Ant, visited: &HashSet<Ant>) -> [Ant;4] {
     for (dx, dy) in ARR_MOVES {
         let next_x = ant_pos.0 + dx;
         let next_y = ant_pos.1 + dy;
-        if !visited.contains(&(next_x,next_y)) && sum_digits(next_x) + sum_digits(next_y) <= 25 {
+        if !visited.contains(&(next_x,next_y)) && sum_digits(next_x as Int) + sum_digits(next_y as Int) <= 25 {
             arr_available_moves[i] = (next_x,next_y);
             i += 1;
         }
@@ -41,7 +35,6 @@ pub fn next(ant_pos: &Ant, visited: &mut HashSet<Ant>) {
     }
 
     visited.insert(*ant_pos);
-    //println!("{} {ant_pos:?}",visited.len());
 
     let available_moves = available_moves(ant_pos, visited);
 
@@ -62,12 +55,12 @@ pub fn run() {
 
 
     let elapsed_time = start_time.elapsed().as_secs_f32();
-    println!("Муравей посетил {} клеток за {}", visited.len(), elapsed_time);
+    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashset + engine: array_tuple_dx_dy = recursion",visited.len());
+    
 }
-use std::thread;
 
 pub fn main() {
-    let handle = thread::Builder::new()
+    let handle = std::thread::Builder::new()
         .stack_size(6 * 1024 * 1024) // 32 MB стека
         .spawn(|| {
             run();

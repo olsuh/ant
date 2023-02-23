@@ -41,7 +41,7 @@ fn available_moves(ant_pos: &AntPos, visited: &HashMap<AntPos,Cell>) -> Vec<AntP
     let available_moves: Vec<_> = ARR_MOVES
     .iter()
     .map(|(dx, dy)| (ant_pos.0 + dx, ant_pos.1 + dy))
-    .filter(|(x, y)| sum_digits(*x as Int) + sum_digits(*y as Int) <= 25 && !visited.contains_key(&(*x, *y)))
+    .filter(|(x, y)| !visited.contains_key(&(*x, *y)) && sum_digits(*x as Int) + sum_digits(*y as Int) <= 25 )
     .collect()
     ;
     available_moves
