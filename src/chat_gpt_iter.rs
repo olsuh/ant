@@ -21,7 +21,7 @@ pub fn main() {
             .collect();
 
         if available_moves.is_empty() {
-            match rem.pop(){
+            match rem.pop() {
                 Some(a_m) => available_moves.push(a_m),
                 None => break, // если нет доступных клеток, выходим из цикла
             }
