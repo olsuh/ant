@@ -92,6 +92,7 @@ impl Cells {
 }
 
 mod hashmap_array_tuple_dx_dy;
+mod chat_gpt_recurse;
 
 fn main() {
     
@@ -103,5 +104,7 @@ fn main() {
 
     let elapsed2 = hashmap_array_tuple_dx_dy::main();
     println!("excellence: {:?}", elapsed2/elapsed);
+
+    chat_gpt_recurse::main();
 }
 

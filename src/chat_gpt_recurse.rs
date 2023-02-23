@@ -53,7 +53,7 @@ pub fn next(ant_pos: &Ant, visited: &mut HashSet<Ant>) {
 
 
 
-pub fn main() {
+pub fn run() {
     let start_time = std::time::Instant::now();
 
     let mut visited = std::collections::HashSet::new();
@@ -63,4 +63,16 @@ pub fn main() {
 
     let elapsed_time = start_time.elapsed().as_secs_f32();
     println!("Муравей посетил {} клеток за {}", visited.len(), elapsed_time);
+}
+use std::thread;
+
+pub fn main() {
+    let handle = thread::Builder::new()
+        .stack_size(6 * 1024 * 1024) // 32 MB стека
+        .spawn(|| {
+            run();
+        })
+        .unwrap();
+
+    handle.join().unwrap();
 }
