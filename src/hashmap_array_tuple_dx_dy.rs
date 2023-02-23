@@ -11,28 +11,26 @@ struct Cells {
 
 impl Cells {
     fn new(ant_pos: AntPos) -> Self {
-        let visited = Default::default();
-        let mut cells = Self { visited, ant_pos };
+        let mut cells = Self { visited: Default::default(), ant_pos };
         cells.add_cell(ant_pos, NULL_POS);
         cells
     }
-    fn add_cell(&mut self, ant_pos: AntPos, prev_pos: AntPos) -> &Self {
+    fn add_cell(&mut self, ant_pos: AntPos, prev_pos: AntPos) {
         let cell = Cell::new(ant_pos, prev_pos, &self.visited);
         self.visited.insert(ant_pos, cell);
         self.ant_pos = ant_pos;
-        self
     }
-    fn run(&mut self) -> bool {
+    fn run(&mut self) -> usize {
         while let Some(cell) = self.visited.get_mut(&self.ant_pos) {
             if let Some(next_pos) = cell.next(){
                 self.add_cell(next_pos, self.ant_pos);
                 continue;
             } else if cell.prev_pos == NULL_POS {
-                return false;
+                break;
             };
             self.ant_pos = cell.prev_pos;
         };
-        false
+        self.visited.len()
     }
 }
 
@@ -81,24 +79,13 @@ impl Cell {
 }
 
 
-pub fn run(ant_pos: AntPos) -> usize {
-
-    let mut cells = Cells::new(ant_pos);
-    
-    cells.run();
-
-    cells.visited.len()
-}
-
-
-
-pub fn main() {
+pub fn main() -> f32 {
     let start_time = std::time::Instant::now();
 
-    let ant_pos = (1000, 1000);
-    let len = run(ant_pos);
+    let mut cells = Cells::new((1000, 1000));
+    let cells_cnt = cells.run();
 
-
-    let elapsed_time = start_time.elapsed().as_secs_f32();
-    println!("Муравей посетил {} клеток за {}", len, elapsed_time);
+    let elapsed = start_time.elapsed().as_secs_f32();
+    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - hashmap_array_tuple_dx_dy");
+    elapsed
 }

@@ -91,7 +91,7 @@ impl Cells {
     
 }
 
-mod chatgpt;
+mod hashmap_array_tuple_dx_dy;
 
 fn main() {
     
@@ -99,8 +99,9 @@ fn main() {
     let mut cells = Cells::new();
     let cells_cnt = cells.run(1000, 1000);
     let elapsed = start.elapsed().as_secs_f32();
-    println!("cells: {cells_cnt}, elapsed: {elapsed:?}");
+    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - enam vector hashset");
 
-    chatgpt::main();
+    let elapsed2 = hashmap_array_tuple_dx_dy::main();
+    println!("excellence: {:?}", elapsed2/elapsed);
 }
 
