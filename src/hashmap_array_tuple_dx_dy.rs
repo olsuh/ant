@@ -86,6 +86,6 @@ pub fn main() -> f32 {
     let cells_cnt = cells.run();
 
     let elapsed = start_time.elapsed().as_secs_f32();
-    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - hashmap_array_tuple_dx_dy");
+    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - data: hashmap + engine: array_tuple_dx_dy");
     elapsed
 }

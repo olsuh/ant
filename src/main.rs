@@ -99,7 +99,7 @@ fn main() {
     let mut cells = Cells::new();
     let cells_cnt = cells.run(1000, 1000);
     let elapsed = start.elapsed().as_secs_f32();
-    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - enam vector hashset");
+    println!("cells: {cells_cnt}, elapsed: {elapsed:?} - data: vector_hashset + engine: enum_match");
 
     let elapsed2 = hashmap_array_tuple_dx_dy::main();
     println!("excellence: {:?}", elapsed2/elapsed);
