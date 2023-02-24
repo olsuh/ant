@@ -1,6 +1,6 @@
 use crate::{sum_digits, Int};
 
-pub fn main() {
+pub fn main() -> f32 {
     let start_time = std::time::Instant::now(); // засекаем время начала работы
 
     let mut visited = std::collections::HashSet::new(); // множество посещенных клеток
@@ -28,10 +28,13 @@ pub fn main() {
         }
 
         ant_pos = available_moves.pop().unwrap(); // перемещаем муравья в первую доступную клетку
-        rem.append(&mut available_moves);
+        if !available_moves.is_empty() {
+            rem.append(&mut available_moves);
+        }
         visited.insert(ant_pos); // добавляем ее в множество посещенных клеток
     }
 
     let elapsed_time = start_time.elapsed().as_secs_f32(); // измеряем время работы
-    println!("Муравей посетил {} клеток за {:?}", visited.len(), elapsed_time);
+    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashset + engine: array_tuple_dx_dy - iteration",visited.len());
+    elapsed_time
 }

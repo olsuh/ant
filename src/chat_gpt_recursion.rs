@@ -45,7 +45,7 @@ pub fn next(ant_pos: &Ant, visited: &mut HashSet<Ant>) {
     }
 }
 
-pub fn run() {
+pub fn run() -> f32 {
     let start_time = std::time::Instant::now();
 
     let mut visited = std::collections::HashSet::new();
@@ -53,16 +53,17 @@ pub fn run() {
     next(&ant_pos, &mut visited);
 
     let elapsed_time = start_time.elapsed().as_secs_f32();
-    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashset + engine: array_tuple_dx_dy = recursion",visited.len());
+    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashset + engine: array_tuple_dx_dy - recursion",visited.len());
+    elapsed_time
 }
 
-pub fn main() {
+pub fn main() -> f32 {
     let handle = std::thread::Builder::new()
         .stack_size(6 * 1024 * 1024) // 32 MB стека
         .spawn(|| {
-            run();
+            run()
         })
         .unwrap();
 
-    handle.join().unwrap();
+    handle.join().unwrap()
 }

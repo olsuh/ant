@@ -104,9 +104,11 @@ fn main() {
     println!("cells: {cells_cnt}, elapsed: {elapsed:?} - data: vector_hashset + engine: enum_match");
 
     let elapsed2 = hashmap_array_tuple_dx_dy::main();
-    println!("excellence: {:?}", elapsed2/elapsed);
+    println!("excellence: {:?}", elapsed2 / elapsed);
 
-    chat_gpt_recursion::main();
-    chat_gpt_iter::main();
+    let elapsed3 = chat_gpt_recursion::main();
+    println!("excellence: {:?}", elapsed3 / elapsed);
+    let elapsed4 = chat_gpt_iter::main();
+    println!("excellence: {:?}", elapsed4 / elapsed);
 }
 
