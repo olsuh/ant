@@ -94,6 +94,7 @@ impl Cells {
 mod hashmap_array_tuple_dx_dy;
 mod chat_gpt_recursion;
 mod chat_gpt_iter;
+mod chat_gpt_recursion_hashbrown;
 
 fn main() {
     
@@ -104,11 +105,13 @@ fn main() {
     println!("cells: {cells_cnt}, elapsed: {elapsed:?} - data: vector_hashset + engine: enum_match");
 
     let elapsed2 = hashmap_array_tuple_dx_dy::main();
-    println!("excellence: {:?}", elapsed2 / elapsed);
+    println!("speedup: {:?}", elapsed / elapsed2);
 
     let elapsed3 = chat_gpt_recursion::main();
-    println!("excellence: {:?}", elapsed3 / elapsed);
+    println!("speedup: {:?}", elapsed / elapsed3);
     let elapsed4 = chat_gpt_iter::main();
-    println!("excellence: {:?}", elapsed4 / elapsed);
+    println!("speedup: {:?}", elapsed / elapsed4);
+    let elapsed5 = chat_gpt_recursion_hashbrown::main();
+    println!("speedup: {:?}, {}", elapsed / elapsed5, elapsed3 / elapsed5);
 }
 

@@ -1,5 +1,5 @@
 use crate::{sum_digits, Int};
-use std::collections::HashSet;
+use hashbrown::HashSet;
 
 type Ant = (i32, i32);
 
@@ -53,7 +53,7 @@ pub fn run() -> f32 {
     next(&ant_pos, &mut visited);
 
     let elapsed_time = start_time.elapsed().as_secs_f32();
-    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashset + engine: array_tuple_dx_dy - recursion",visited.len());
+    println!("cells: {}, elapsed: {elapsed_time:?} - data: hashbrown::hashset + engine: array_tuple_dx_dy - recursion",visited.len());
     elapsed_time
 }
 
